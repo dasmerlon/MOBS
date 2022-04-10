@@ -1,0 +1,77 @@
+MOBS SoSe 2022 - 5.04.2022
+Aufgabenblatt 01
+Deadline: 15.04.2022 - 23:59 Uhr
+
+2 Aufgaben
+150 + 50Punkte
+
+#################################################################################
+Aufgabe 1-1: Faulsein (100 Punkte)
+#################################################################################
+
+Programmierer sind grundsätzlich faul. Darauf sind sie auch gewissermaßen stolz. Ironischerweise sind sie darauf so stolz, dass sie sehr viel Zeit und Mühen darauf verwenden, möglichst faul zu sein, also Dinge zu automatisieren, die manuell nur halb so viel Zeit gekostet hätten. Mit diesen automatisierten Dingen gehen sie dann zu anderen Programmierern, um diese damit zu beeindrucken, wie faul sie tatsächlich sind. Das ist mitunter recht anstrengend und zeitaufwändig und deswegen möchten wir das hier üben. In dieser Aufgabe geht es ums Faulsein.
+
+Fast jeder Programmieranfänger beginnt damit, ein Hello-World Programm zu schreiben. Erfahrene Programmieranfänger hingegen beginnen damit, ein Hello-World Programm schreiben _zu lassen_. Das Ziel dieser Aufgabe ist es, mit einem einzigen Kommandozeilenbefehl (der ein Skript aufruft), ein einfaches C-Hello-World Programm zu schreiben, zu kompilieren und auszuführen. Bitte halte Dich dabei genau an die unten aufgeführten Schritte.
+
+1. Schreibe eine Datei lazy.sh (Dies ist die Datei, die für diese Aufgabe abgegeben werden soll.)
+2. Beim Aufruf des Befehls lazy.sh in der Linux-Kommandozeile, soll folgendes geschehen:
+2.1. Es wird ein neues Verzeichnis angelegt mit dem Namen lazycode.
+2.2. Im nächsten Schritt wird in das Verzeichnis lazycode gewechselt. Alles weitere geschieht darin.
+2.3. Es wird (automatisiert) eine Datei mit dem Namen autocode.c erstellt.
+2.4. In diese Datei wird der folgende Code geschrieben:
+#include <stdio.h>
+int main(void){
+	printf("Hello, world!\n");
+	return 0;
+}
+2.5. Achte dabei bitte auf die Zeilenumbrüche und auf Zeichen, die möglicherweise escaped werden müssen.
+2.6. Das Programm wird mit gcc kompiliert und zwar zu der ausführbaren Datei autocode (ohne Dateierweiterung).
+2.7. Die Datei autocode wird ausgeführt und der Output in eine neue Datei mit dem Namen greetings.txt umgeleitet.
+2.8. Der Inhalt von greetings.txt soll anschließend auf der Konsole ausgegeben werden.
+
+Bei dieser Aufgabe wird überprüft:
+- ob das Verzeichnis lazycode erstellt wird (10 Punkte)
+- ob in das Verzeichnis navigiert wird (10 Punkte)
+- ob die Datei autocode.c mitsamt Inhalt erstellt wird (25 Punkte)
+- ob das Program autocode erfolgreich kompiliert wird (15 Punkte)
+- ob das Program autocode erfolgreich ausgeführt wird (15 Punkte)
+- ob der Output des Programms autocode in die Datei greetings.txt umgeleitet wird (15 Punkte)
+- ob der Dateiinhalt von greetings.txt auf die Konsole ausgegeben wird (10 Punkte)
+
+#################################################################################
+Aufgabe 1-2: Zahl der Wahl (100 Punkte)
+#################################################################################
+
+Schon wieder die Zahlenkombination vom Fahrradschloss vergessen? Kein Problem. In dieser Aufgabe üben wir, 5-stellige Zufallszahlen zu erraten. Im Gegensatz zum Fahrradschloss haben wir hier allerdings die praktische Hilfestellung, dass wir für jeden Rateversuch überprüfen können, ob die geschätzte Zahl kleiner oder größer als die tatsächliche Kombination ist (oder ob wir richtig geraten haben). Unser Ziel ist es, mit möglichst wenigen Versuchen, die Zahlenkombination zu erraten.
+
+Die grundsätzliche Architektur des Spiels ist schon vorgegeben. Sie besteht aus drei Dateien:
+1) guess.c - Hier soll die Funktion 'int guess_the_number()' implementiert werden. Die Signatur soll dabei nicht verändert werden. Es soll lediglich der Funktionsrumpf ausgefüllt werden. Es ist erlaubt, Hilfsfunktionen zu definieren und zu verwenden. (Vorsicht - Vorwärtsdeklaration notwendig!) Diese Datei soll für diese Aufgabe eingereicht werden. Die Funktion soll die gesuchte Zahl zurückgeben.
+2) main.c - Hier werden die Zufallszahlen erzeugt. Diese Datei sollte nicht verändert und nicht abgegeben werden. Bei Ausführung der main() Funktion in der Datei werden nacheinander 100 Zufallszahlen erzeugt. Für jede Zufallszahl wird genau einmal die Funktion guess_the_number() [siehe oben] aufgerufen. Zusätzlich enthält die Datei noch eine Funktion 'int evaluate(int)'. Diese kann an einer beliebigen Stelle aus der Datei guess.c aufgerufen werden, um zu prüfen, ob die gesuchte Zahl mit der geratenen Zahl übereinstimmt. In diesem Fall gibt die evaluate-Funktion den Wert 0 zurück. Ist die gesuchte Zahl kleiner als die geratene Zahl, gibt die Funktion -1 zurück. Ist die gesuchte Zahl größer als die geratene Zahl, gibt die Funktion 1 zurück. Es wird außerdem mitgezählt, wie häufig die Funktion evaluate aufgerufen wird.
+3) guessing.h - Diese Datei deklariert die beiden Funktionen guess_the_number() und evaluate(). Die beiden Dateien guess.c und main.c  binden diese Datei ein. So können die beiden Funktionen aus beiden Dateien heraus genutzt werden. Die Datei soll nicht verändert und nicht abgegeben werden.
+
+Die Dateien main.c, guess.h und guessing.h können genutzt werden, um das gesamte Spiel zu testen. Dazu kann das Spiel mit dem folgenden Befehl kompiliert werden:
+gcc -o game main.c guess.c
+Die Datei guessing.h muss dabei ebenfalls in dem Verzeichnis liegen.
+Danach kann es mit dem folgenden Befehl ausgeführt werden:
+./game
+
+Momentan ist der Zufallszahlengenerator so eingestellt, dass er immer wieder die gleiche Serie an Zufallszahlen generiert (Seed: 42). Bei der Bewertung wird der Seed natürlich ein anderer sein.
+
+Bei der Aufgabe wird überprüft:
+- ob die Funktion guess_the_number() zuverlässig die gesuchte Zahl findet (50 Punkte)
+- ob die durchschnittliche Anzahl an Versuchen kleiner als 100 ist (10 Zusatzpunkte)
+- ob die durchschnittliche Anzahl an Versuchen kleiner als 50 ist (weitere 20 Zusatzpunkte)
+- ob die durchschnittliche Anzahl an Versuchen kleiner als 20 ist (weitere 20 Zusatzpunkte)
+
+
+#################################################################################
+Zusammenfassung - was muss ich abgeben?
+#################################################################################
+Aufgabe 1: lazy.sh		(100 Punkte)
+Aufgabe 2: guess.c		(50 Punkte + 50 Zusatzpunkte)
+Insgesamt können also 200 Punkte erreicht werden. Punkte und Zusatzpunkte sind dabei gleichwertig.
+
+Bitte keine weiteren Dateien einreichen.
+Bitte Dateinamen nicht abändern.
+
+
