@@ -1,0 +1,58 @@
+ubuntu@ip-172-31-5-116:~/code$ ./spielkonsole
+Please choose:
+1) ls
+2) ps
+3) cal
+4) exit
+>>2
+Do you want to add an argument?
+>>-S
+    PID TTY      STAT   TIME COMMAND
+   1764 pts/0    Ss+    0:16 -bash
+   2857 pts/1    Ss     0:00 -bash
+   2869 pts/1    S+     0:00 ./spielkonsole
+   2870 pts/1    R+     0:00 ps -S
+Exit Status: 0
+Please choose:
+1) ls
+2) ps
+3) cal
+4) exit
+>>3
+Do you want to add an argument?
+>>no
+     April 2021
+Su Mo Tu We Th Fr Sa
+             1  2  3
+ 4  5  6  7  8  9 10
+11 12 13 14 15 16 17
+18 19 20 21 22 23 24
+25 26 27 28 29 30
+
+Exit Status: 0
+Please choose:
+1) ls
+2) ps
+3) cal
+4) exit
+>>2
+Do you want to add an argument?
+>>quatsch
+error: process ID list syntax error
+
+Usage:
+ ps [options]
+
+ Try 'ps --help <simple|list|output|threads|misc|all>'
+  or 'ps --help <s|l|o|t|m|a>'
+ for additional help text.
+
+For more details see ps(1).
+Status: 1
+Please choose:
+1) ls
+2) ps
+3) cal
+4) exit
+>>4
+ubuntu@ip-172-31-5-116:~/code$
