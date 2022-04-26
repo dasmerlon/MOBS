@@ -1,0 +1,73 @@
+MOBS SoSe 2022 - 12.04.2022
+Aufgabenblatt 02
+Deadline: 26.04.2022 - 23:59 Uhr
+
+1 Aufgabe (+ 1 optional)
+25 Punkte (+ 100 optional)
+
+#################################################################################
+Aufgabe 2-1: Eiersuche (25 Punkte)
+#################################################################################
+
+Oster steht vor der Tür. Und für eine waschechte Informatikerin ist sowieso immer der richtige Zeitpunkt um sogenannte EasterEggs zu finden. In dieser Aufgabe wollen wir uns auf Eiersuche begeben. Genauer gesagt, möchten wir uns mit Kommandos in der UNIX-Shell beschäftigen. Dies möchten wir am Beispiel eines bekannten, rekursiven Volkslieds tun (das zugegebenermaßen ein wenig auf das aktuelle Modul angepasst wurde). Ihr findet den Text in der Datei mobs.txt. Auch hier soll ein einfaches Skript erzeugt werden, das die Arbeit für uns erledigt.
+
+1. Erzeuge eine Datei easteregg.sh (Dies ist die Datei, die für diese Aufgabe abgegeben werden soll.)
+2. Beim Aufruf des Befehls easteregg.sh in der Linux-Kommandozeile, soll folgendes geschehen:
+2.1. Es wird gezählt, wie häufig die Buchstabenkombination "ei" in der Datei mobs.txt auftaucht. Dabei soll Groß- und Kleinschreibung nicht beachtet werden. Das heißt, es werden sowohl "ei" als auch "Ei" gezählt. Die Anzahl soll auf der Konsole ausgegeben werden. Es kann davon ausgegangen werden, dass die Datei mobs.txt im selben Ordner liegt wie die Datei easteregg.sh.
+2.2. Um die Suche in Zukunft einfacher zu gestalten, möchten wir nun jedes Auftreten von "ei" oder "Ei" in "EI" (großgeschrieben) umformen.
+2.3. Das Ergebnis soll in eine neu angelegte Datei MOBS.txt umgeleitet werden.
+
+Bei dieser Aufgabe wird überprüft:
+- ob die Anzahl der Vorkommen von "ei" bzw. "Ei" korrekt gezählt werden. (10 Punkte)
+- ob alle Vorkommen von "ei" bzw. "Ei" durch "EI" ersetzt werden. (10 Punkte)
+- ob der ersetzte Text korrekt in die Datei MOBS.txt geschrieben wird. (5 Punkte)
+
+#################################################################################
+Aufgabe 2-2: Spielkonsole (OPTIONAL) (100 Punkte)
+#################################################################################
+
+Diese Aufgabe ist auf das Nächste Aufgabenblatt verschoben, das am 26.4. rauskommt und für das ihr 2 Wochen Zeit haben werdet.
+Ihr könnt sie jetzt trotzdem schon abgeben wenn ihr lust habt, wir empfehlen euch aber sie mit dem nächsten Blatt zu machen, weil wir noch nicht alle nötigen Tehmen behandelt haben.
+
+In dieser Aufgabe entwickeln wir in C eine eigene Konsolenanwendung (Shell), die es erlaubt, eine kleine Auswahl von Programmen mitsamt Argumenten auszuführen. Diese Befehle sind: ls, ps und cal. Weiterhin soll es die Möglichkeit geben, die Konsole zu beenden.
+
+Hier die Details:
+- Die Anwendungen fordert die Nutzer zunächst dazu auf, eine Zahl zwischen 1 und 4 einzugeben, um eines der Programme (1-3) zu wählen oder die Konsolenanwendung zu beenden (4).
+- Nachdem die Nutzer ein Programm ausgewählt haben, haben sie die Möglichkeit, Argumente zu diesem Programm einzugeben, beispielsweise -l (was im Zusammenhang mit ls eine detaillierte Liste der Dateien und Verzeichnisse ausgibt).
+- Das Minuszeichen soll dabei von den Nutzern miteingegeben werden, also etwa: '-S'
+- Möchten die Nutzer dem Program keine Argumente mitgeben, so können sie die Frage nach den Argumenten mit 'no' beantworten. (Eine leere Eingabe auszuwerten wäre komplizierter.)
+- Das ausgewählte Programm soll dann mit Hilfe von fork() und execlp() gestartet werden.
+- Die Konsolenanwendung soll auf die Beendigung des neugestarteten Prozesses warten und den Exit-Status ausgeben.
+- Anschließend sollen die Nutzer wieder zum Beginn der Konsolenanwendung kommen und ein neues Programm (1-3) wählen oder die Anwendung schließen (4) können.
+- Die Konsolenanwendung soll in der Datei myshell.c implementiert werden. Diese Datei soll für die Aufgabe abgegeben werden.
+
+Da wir Strings noch nicht richtig behandelt haben hier ein paar hinweise:
+- Es reicht für die Aufgabe mit literalen wie diesem "Beispiel" zu arbeiten.
+- wenn ihr an den Anfang eurer Datei 
+#include <string.h>
+schreibt, könnt ihr funktionen benutzen um zB. strings zu vergleichen.
+schreibt in der Konsole "man string" um mehr darüber herauszufinden.
+- versucht am besten nicht strings aus einer Funktion herauszureichen, sondern verarbeitet sie direkt innerhalb der aktuellen Funktion.
+
+Bei dieser Aufgabe wird überprüft:
+- ob die Konsolenanwendung das Menü ausgibt und eine Zahl als Eingabe annimmt. (10 Punkte)
+- ob die drei Programme korrekt gestartet werden. (15 Punkte)
+- ob die Konsolenanwendung korrekt beendet werden kann. (10 Punkte)
+- ob Argumente eingegeben werden können und korrekt ausgeführt werden. (15 Punkte)
+- ob Programme auch ohne Argumente ausgeführt werden können. (10 Punkte)
+- ob die Konsolenanwendung auf die Beendigung des gestarteten Programms wartet und dessen Exit Status ausgibt. (10 Punkte).
+- ob nach der Beendigung eines Programms weitere Programme ausgeführt werden können. (10 Punkte)
+- ob die Eingabe der Zahl bei der Auswahl des Programms robust ist gegen Fehleingaben. (20 Punkte)
+
+#################################################################################
+Zusammenfassung - was muss ich abgeben?
+#################################################################################
+Aufgabe 1: easteregg.sh	(25 Punkte)
+Aufgabe 2: myshell.c	(optional)(100 Punkte)
+
+Insgesamt können also 25 Punkte (+ 100 optional) erreicht werden.
+
+Bitte keine weiteren Dateien einreichen.
+Bitte Dateinamen nicht abändern.
+
+
