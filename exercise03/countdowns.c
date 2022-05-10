@@ -10,11 +10,16 @@ typedef struct params {
     int counter;
 } params;
 
+
 void *countdown(void *args) {
     params *input = (params*) args;
     sleep(input->sec);
-    printf("\nThe %d. countdown finished after %d seconds.\nGimme mooore seconds: ", input->counter, input->sec);
+    printf("\033[0;31m\nThe %d. countdown finished after %d seconds!\033[0m\n", input->counter, input->sec);
+    printf("Enter a number of seconds to start a countdown: ");
+    
+    // Clear the buffer to print the second line
     fflush(stdout);
+
     free(args);
     return EXIT_SUCCESS;
 }
@@ -27,18 +32,23 @@ int main(void) {
         params *args = malloc(sizeof(params));
         args->counter = count;
         pthread_t tid;
-        printf("Gimme those seconds: ");
+
+        printf("Enter a number of seconds to start a countdown: ");
         int x = scanf("%d", &args->sec);
 
-        // ... https://stackoverflow.com/questions/7898215/how-to-clear-input-buffer-in-c
+        // Check if scanf fails to convert the input to an integer.
+        // In this case, break the loop by clearing the input buffer
+        // and print a hint that an integer is expected.
         if (x != 1) {
             int ch;
+            // Read and discard all characters up to the end of the line
             while ((ch = getchar()) != '\n' && ch != EOF) {}
-            printf("Gimme a positive natural number pls!\n");
+            printf("Please enter a positive natural number!\n");
             continue;
         }
-        printf("Countdown with %d seconds begins.\n", args->sec);
-        int success = pthread_create(&tid, NULL, &countdown, (void*) args);
+
+        printf("\033[0;33mYour %d. Countdown with %d seconds begins.\033[0m\n", args->counter, args->sec);
+        pthread_create(&tid, NULL, &countdown, (void*) args);
         count++;
     }
  

@@ -1,0 +1,105 @@
+MOBS SoSe 2022 - 26.04.2022
+Aufgabenblatt 03
+Deadline: 10.05.2022 - 23:59 Uhr
+
+3 Aufgaben
+250 + 50 Punkte
+
+#################################################################################
+Aufgabe 2-1: Countdowns (100 Punkte)
+#################################################################################
+
+Ihr zählt bestimmt schon die Sekunden bis Ihr in die Welt der pthreads (und des nächsten Aufgabenzettels) eintauchen könnt. Um diese Aufgabe zu automatisieren und gleichzeitig zu weiteren wichtigen und lebensverändernden Ereignissen herunterzählen zu können, schreiben wir dieses automatische countdown Programm mit beliebig vielen Threads!
+
+Hier der Ablauf:
+- Euer Programm soll den Benutzer zur Eingabe einer Zahl auffordern.
+- Nach Eingabe ist das Programm sofort bereit, eine nächste Zahl zu akzeptieren.*
+- Das Programm kündigt den Countdown mit der eingegebene Sekundenzahl an.*
+- Das Programm zählt die eingegebene Zahl in Sekunden runter (im Hintergrund oder auf der Konsole) und gibt anschließend Alarm auf der Konsole aus.
+- Es können mehrere Zähler gleichzeitig auf verschiedenen Threads laufen und herunterzählen.
+- Die genauen Textausgaben könnt Ihr selbst festlegen.
+* Diese beiden Punkte können auch vertauscht sein.
+
+Bei dieser Aufgabe wird überprüft:
+- ob der Benutzer zur Eingabe aufgefordert wird. (5 Punkte)
+- ob das Program eine Sekundenzahl als Eingabe akzeptiert. (15 Punkte)
+- ob das Program eine Nachricht mit der eingegebenen Sekundenzahl ausgibt. (10 Punkte)
+- ob nach Ablauf der eingegebenen Sekunden ein Alarm in der Konsole erscheint. (20 Punkte)
+- ob sich der bis hier beschriebene Vorgang wiederholt. (10 Punkte)
+- ob mehrere Zähler (mindestens 4) gleichzeitig laufen können. (40 Punkte)
+
+Hinweise: 
+- Kompiliert euer Programm mit der option "-pthread", um die pthread Bibliothek mit einzubinden und benutzt den header <pthread.h>. (generell gilt: <> für Systemheader, "" für eigene Header)
+- Um die header für die sleep Funktion zu finden, sucht in der konsole nach "man 3 sleep"
+(die 3 besagt, dass ihr nach C-Bibliotheksfunktionen sucht), eine Compiler-option braucht Ihr dafür nicht.
+- Die Nutzung von pthread_join() ist nicht notwendig.
+
+#################################################################################
+Aufgabe 2-2: Buchstabensuppe (50 Punkte + 50 Zusatzpunkte) [Wettbewerb]
+#################################################################################
+
+Ziel dieser Aufgabe ist es, mit C das H in der Suppe zu finden. Genauer gesagt, möchten wir nicht nur das H finden, sondern auch alle anderen Buchstaben. Es geht nämlich darum, die Häufigkeit der einzelnen Buchstaben von a-z (bzw. A-Z) in einer Textdatei zu zählen.
+
+Hier die Details:
+- Die Methode zum Zählen soll in der vorgegebenen Datei 'counter.c' in der Methode 'count(const char*)' implementiert werden.
+- Es dürfen weitere Methoden angelegt werden. Wichtig ist aber, dass der Aufruf der Methode 'count(const char*)' genügt, um das korrekte Ergebnis zu ermitteln.
+- Der an 'count(const char*)' übergebene Parameter enthält den Namen der Datei, die gezählt werden soll. Diese müsst ihr selber öffnen und lesen.
+- In der Datei counter.c ist das Feld (Array) 'int alphabet[26]' deklariert. Nach dem Aufruf der Methode 'count(const char*)' soll das Feld alphabet die korrekte Häufigkeit der Buchstaben der jeweiligen Textdatei enthalten. An der ersten Stelle (also alphabet[0]) sollen dabei die Vorkommen von 'a'/'A' gezählt werden, an der zweiten Stelle von 'b'/'B' und so weiter.
+- Groß- und Kleinbuchstaben sollen gemeinsam gezählt werden: sowohl 'a' als auch 'A' sollen alphabet[0] um eins erhöhen.
+- Alle anderen Zeichen sollen ignoriert werden.
+- Es ist nicht notwendig, das Feld 'alphabet' wieder mit Nullen zu füllen. Das wird vom Modul 'main.c' übernommen.
+- Die Methode 'count(const char*)' wird durch die beigefügte Datei main.c aufgerufen. Dabei wird die Zeit gemessen, die die Methode count(const char*) benötigt, um die Buchstaben zu zählen.
+- Die Header-Datei 'counting.h' soll nicht verändert werden.
+- Das Modul 'main.c' kann zum Testen verwendet werden. Die Eingabedateien bei der Bewertung werden andere sein als 'example.txt'.
+
+Bei dieser Aufgabe wird überprüft:
+- ob für insgesamt 10 Eingabedateien die Häufigkeit der einzelnen Buchstaben korrekt ermittelt wird. (50 Punkte)
+
+Weiterhin wird ermittelt, wie lange die Methode im Durchschnitt für die Analyse bei 10 Durchläufen mit einer großen Eingabedatei benötigt. Daher sollte die Aufgabe so effizient wie möglich implementiert werden. Die Auswertung findet im Rahmen einer freiwilligen & informellen Zoomsession statt. Dabei gibt es folgende Zusatzpunkte:
+1. Platz: 50, 2. Platz: 45, 3. Platz: 40, 4. Platz: 35, 5. Platz: 30, 6. Platz: 25, 7. Platz: 20, 8. Platz: 15, 9. Platz: 10, 10. Platz: 5
+Es gibt außerdem 2 Kategorien für die seperat bepunktet wird: Echtzeit (wie die Uhr an der Wand) und Prozessorzeit (die Summe der von allen Prozessorkernen verbrauchten Zeit). Dieser Zeitunterschied ist nur für Lösungen mit mehreren Threads relevant, für Single threaded Lösungen sind diese Zeiten gleich. 
+Jede Abgabe wird in beiden Kategorien getestet und erhält anschließend das maximum der beiden erreichten Punkte (zB. Wallclock 35 & Prozessorzeit 20 Punkte erreicht -> 35 Zusatzpunkte)
+
+Für die Wallclock Zeit kann mit main_wallclock.c statt main.c kompiliert werden.
+
+Eure Lösungen werden mit gcc und nur dem Argument '-pthread' compilliert (pthreads sind optional) und auf einem Ubuntu System mit 4 Prozessorkernen laufen.
+
+#################################################################################
+Aufgabe 2-3: Spielkonsole (100 Punkte)
+#################################################################################
+
+In dieser Aufgabe entwickeln wir in C eine eigene Konsolenanwendung (Shell), die es erlaubt, eine kleine Auswahl von Programmen mitsamt Argumenten auszuführen. Diese Befehle sind: ls, ps und cal. Weiterhin soll es die Möglichkeit geben, die Konsole zu beenden.
+
+Hier die Details:
+- Die Anwendungen fordert die Nutzer zunächst dazu auf, eine Zahl zwischen 1 und 4 einzugeben, um eines der Programme (1-3) zu wählen oder die Konsolenanwendung zu beenden (4).
+- Nachdem die Nutzer ein Programm ausgewählt haben, haben sie die Möglichkeit, ein Argument zu diesem Programm einzugeben, beispielsweise -l (was im Zusammenhang mit ls eine detaillierte Liste der Dateien und Verzeichnisse ausgibt). Weitere Argumente können ignoriert werden.
+- Das Minuszeichen soll dabei von den Nutzern miteingegeben werden, also etwa: '-S'
+- Möchten die Nutzer dem Program keine Argumente mitgeben, so können sie die Frage nach den Argumenten mit 'no' beantworten. (Eine leere Eingabe auszuwerten wäre komplizierter.)
+- Das ausgewählte Programm soll dann mit Hilfe von fork() und execlp() gestartet werden.
+- Die Konsolenanwendung soll auf die Beendigung des neugestarteten Prozesses warten und den Exit-Status ausgeben.
+- Anschließend sollen die Nutzer wieder zum Beginn der Konsolenanwendung kommen und ein neues Programm (1-3) wählen oder die Anwendung schließen (4) können.
+- Die Konsolenanwendung soll in der Datei myshell.c implementiert werden. Diese Datei soll für die Aufgabe abgegeben werden.
+
+Bei dieser Aufgabe wird überprüft:
+- ob die Konsolenanwendung das Menü ausgibt und eine Zahl als Eingabe annimmt. (10 Punkte)
+- ob die drei Programme korrekt gestartet werden. (15 Punkte)
+- ob die Konsolenanwendung korrekt beendet werden kann. (10 Punkte)
+- ob ein Argument eingegeben werden kann und korrekt ausgeführt wird. (15 Punkte)
+- ob Programme auch ohne Argumente ausgeführt werden können. (10 Punkte)
+- ob die Konsolenanwendung auf die Beendigung des gestarteten Programms wartet und dessen Exit Status ausgibt. (10 Punkte).
+- ob nach der Beendigung eines Programms weitere Programme ausgeführt werden können. (10 Punkte)
+- ob die Eingabe der Zahl bei der Auswahl des Programms robust ist gegen Fehleingaben. (20 Punkte)
+
+Siehe Beispiel_Log.txt als Referenz, dabei dürfen eure Texte abweichen.
+
+#################################################################################
+Zusammenfassung - was muss ich abgeben?
+#################################################################################
+Aufgabe 1: countdowns.c	(100 Punkte)
+Aufgabe 2: counter.c	(50 + 50 Zusatzpunkte)
+Aufgabe 3: myshell.c	(100 Punkte)
+
+Insgesamt können also 300 Punkte erreicht werden. Punkte und Zusatzpunkte sind dabei gleichwertig.
+
+Bitte keine weiteren Dateien einreichen.
+Bitte Dateinamen nicht abändern.
