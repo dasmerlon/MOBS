@@ -1,0 +1,100 @@
+MOBS SoSe 2022 - 10.05.2022
+Aufgabenblatt 04
+Deadline: 17.05.2022 - 23:59 Uhr
+
+3 Aufgaben
+200 Punkte
+
+#################################################################################
+Aufgabe 4-1: Scheduling@Home (80 Punkte)
+#################################################################################
+
+In dieser Aufgabe geht es um die Auseinandersetzung mit den drei einfachen Scheduling-Strategien FCFS, RR und VRR. Dies soll am Beispiel eines sehr einfach implementierten Simulators geschehen. Der Simulator in der Datei scheduling_simulator.c erlaubt es, eine Datei scenario.txt einzulesen, die Informationen über Prozesse beinhaltet. Diese Prozesse werden nun (ähnlich wie bei dem in der Vorlesung vorgestellten Simulator AnimOS) gescheduled.
+
+Das Ziel dieser Aufgabe ist es, den Simulator so zu erweitern, dass er am Ende eines Simulationslauf die prozentuale Verteilung der CPU-Zeit auf die Prozesse ausgibt, etwa so:
+1: 34%, 2: 26%, 3: 35%, idle: 5%
+Somit hätte Prozess 1 34% der CPU-Zeit erhalten, Prozess 2 26%, Prozess 3 35% und zu 5% war die CPU im Leerlauf.
+
+Am Scheduling selbst soll nichts verändert werden. Es geht "nur" um die Erstellung der Statistik.
+
+Hier die Details:
+- Eine Einführung in den Simulator findet in der Übung am 11. Mai statt. Die Übung wird aufgezeichnet. Dort gibt es wertvolle Hinweise zu dem Code, die das Verständnis deutlich erleichtern.
+- Die main-Methode kann mit einem Parameter aufgerufen werden, der die Scheduling-Strategie bestimmt. Erlaubte Werte sind FCFS, RR und VRR. Der Default ist FCFS.
+- Die Datei scenario.txt bestimmt wie viele Prozesse laufen sollen und welche Eigenschaften (Ankunftszeit, CPU burst, IO burst) sie haben. Jede Zeile beschreibt einen Prozess. Die erste Spalte steht für die Ankunftszeit, die zweite für den CPU burst und die dritte für den IO burst.
+- Die Ankunftszeit soll einfachheitshalber immer 0 sein.
+- In der Datei scheduling_simulator.h sind alle wichtigen Konstanten und Funktionen deklariert.
+
+Bei dieser Aufgabe wird überprüft:
+- ob am Ende der Ausführung des Simulators eine Zeile ausgegeben wird, die die prozentuale CPU-Zuteilung pro Prozess auflistet. (80 Punkte)
+
+
+#################################################################################
+Aufgabe 4-2: Fair Share(60 Punkte)
+#################################################################################
+
+Aufbauend auf Aufgabe 3-1 soll in dieser Aufgabe gezeigt werden, welche Auswirkungen die Zusammensetzung der laufenden Prozesse auf die Verteilung der CPU-Zeit bei den verschiedenen Scheduling-Strategien hat. Dazu sollen drei Prozesse A, B und C erzeugt, werden, die jeweils eine feste Dauer CPU verbrauchen (CPU burst) und eine feste Dauer Ein- und Ausgabeoperationen durchführen (IO burst).
+
+Die Werte für CPU burst und IO burst der drei Prozesse soll nun so gewählt werden, dass sich daraus ein bestimmtes Verhältnis bei der Verteilung der CPU-Zeiten ergibt. Insgesamt sollen sechs Szenarien erstellt werden. Bei Szenario 1 wird mit FCFS gescheduled. Dabei soll der Prozess A demnach etwa 50% der CPU-Zeit erhalten, Prozess B 30% und Prozess C 20%. Durch anpassen der CPU und IO bursts lässt sich dieses Ergebnis erzielen. Zum testen kann entweder AnimOS (https://ess.cs.uni-osnabrueck.de/software/AnimOS/CPU-Scheduling/index.html) oder auch der in Aufgabe 3.1 entwickelte Simulator dienen.
+
+Folgende Szenarien sollen erstellt werden:
+
+Szenario 1) FCFS Scheduling, A:50 B:30 C:20
+Szenario 2) RR Scheduling*, 	 A:50 B:30 C:20
+Szenario 3) VRR Scheduling*,  A:50 B:30 C:20
+
+Szenario 4) FCFS Scheduling, A:70 B:20 C:10
+Szenario 5) RR Scheduling*, 	 A:70 B:20 C:10
+Szenario 6) VRR Scheduling*,  A:70 B:20 C:10
+
+*Die Zeitscheibenlänge beträgt hier jeweils 2.
+
+Hier die Details:
+- Für jedes Szenario soll eine Datei eingereicht werden. Die Namen sollen dabei scenario_1.txt, ..., scenario_6.txt lauten. Das Format soll dabei unbedingt dem Format der in Aufgabe 3.1 vorgestellten Eingabedatei (scenario.txt) entsprechen.
+- Zielwerte müssen nicht exakt erreicht werden. Eine Abweichung von +/- 2 Prozentpunkte von den Zielwerten ist dabei genau genug.
+- Als Übung: Schaut Euch, sobald Ihr die richtigen Einstellungen gefunden habt, gerne die anderen beiden Scheduling Strategien im Vergleich an. Wie würden sie sich verhalten?
+- Bei der Bewertung wird eine Laufzeit von 200 CPU Zyklen (Ticks) verwendet.
+- Die Ankunftszeit eines Prozesses soll auch hier immer 0 sein.
+- Beispielhaft könnte eine Datei also so aussehen:
+0 5 10
+0 1 4
+0 4 4
+
+Bei dieser Aufgabe wird überprüft:
+- ob bei der Verwendung der jeweiligen Szenario-Datei (scenario_1.txt, ..., scenario_6.txt) die entsprechende Verteilung der CPU-Zeiten erfolgt. (je Szenario 10 Punkte)
+
+
+#################################################################################
+Aufgabe 4-3: Listiges (60 Punkte)
+#################################################################################
+
+In dieser Aufgabe geht es um die Implementierung einer einfachen Datenstruktur: Der einfach verketteten Liste. Hierbei erweitern wir die Listenimplementierung, die bereits in der Vorlesung vorgestellt wurde und erweitern Sie um folgende Funktionen:
+
+- void enqueue_front(list *list, element* elem); --> Fügt das Element elem am Anfang der Liste list ein.
+- element* dequeue(list *list); --> Gibt das erste Element der Liste list zurück und entfernt es aus der Liste.
+- void delete_elements(list *list, int value) --> Löscht alle Elemente aus der Liste list, die den Wert value als payload haben. Dabei soll auch der Speicher des Elements freigegeben werden.
+
+Hier die Details:
+- Als Grundlage dieser Aufgabe dient die Datei list.c. Dies ist auch die Datei, die für diese Aufgabe abgegeben werden soll.
+- Im Gegensatz zu der Implementierung in der Vorlesung speichert die Liste in dieser Aufgabe ganze Zahlen (int) statt Zeichen (char).
+- Die Methode initialize_list() wird dazu genutzt, eine neue (leere) Liste zu erstellen, den Speicher dafür zu allokieren und einen Zeiger auf diese neue Liste zurückzugeben.
+- Die Implementierung muss nicht Thread-Safe sein. (Sie ist vielmehr die Vorbereitung zu einer weiteren Aufgabe, in der genau das nachgeholt werden soll.)
+
+Bei dieser Aufgabe wird überprüft:
+- ob die enqueue_front() Funktion korrekt implementiert ist. (10 Punkte)
+- ob die dequeue() Funktion korrekt implementiert ist. (20 Punkte)
+- ob die delete_elements() Funktion korrekt implementiert ist. (30 Punkte)
+
+
+#################################################################################
+Zusammenfassung - was muss ich abgeben?
+#################################################################################
+Aufgabe 1: scheduling_simulator.c und scheduling_simulator.h (80 Punkte)
+Aufgabe 2: 6 Dateien: scenario_1.txt, scenario_2.txt, scenario_3.txt, scenario_4.txt, scenario_5.txt, scenario_6.txt (60 Punkte)
+Aufgabe 3: list.c (60 Punkte)
+
+Insgesamt können also 200 Punkte erreicht werden.
+
+Bitte keine weiteren Dateien einreichen.
+Bitte Dateinamen nicht abändern.
+
+
